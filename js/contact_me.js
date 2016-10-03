@@ -71,3 +71,14 @@ $(function() {
 $('#name').focus(function() {
     $('#success').html('');
 });
+ContactMe.mailer :contact do
+
+  email :send_message do |form, contact_form|
+    to        form.email_to
+    subject   form.subject
+    locals    :form => form, :contact_form => contact_form
+    provides  :plain, :html
+    render    'contact/send_message'
+  end
+
+end
